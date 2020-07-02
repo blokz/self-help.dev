@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 <head>
-    <title>self-help.dev - you're the guru</title>
+    <title>you're the guru @ self-help.dev</title>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -92,25 +92,85 @@
         
 
   
-    
-
+    <script src="https://cdn.jsdelivr.net/npm/@hiveio/hive-js/dist/hive.min.js"></script>
 <!-- CARD -->
 <div class="demo-card-square mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
         <h2 class="mdl-card__title-text" id="cms">Hive</h2>
     </div>
     <div class="mdl-card__actions mdl-card--border ">
-     
-     <a href="https://hive.blog/@self-help.dev">@self-help.dev</a>
+
+        <div id="posts">TODO: Add Markdown Support<hr/></div>
+        <script>
+            const now = new Date().toISOString().split('.')[0];
+            window.onload = function loading() {
+                user = "sn0n"
+                hive.api.getDiscussionsByAuthorBeforeDate(user, null, now, 10, (err, result) => {
+
+                    // testing for loop for posts. 
+                    // data for each post in a loop
+
+                    for (var i = 0; i < result.length; i++) {
+                        console.log(" for loop data : " + JSON.stringify(result[i]));
+                        //thisPost = JSON.parse(JSON.stringify(result[i]));
+                        console.log("Author: " + result.author);
+                        console.log("i is " + i);
+                    }
+
+                    // TODO: set loop for each & display inline popup
+                    var recent1 = JSON.parse(JSON.stringify(result[0]));
+                    //console.log("recent1 from main: " + recent1.body);
+                    var recent1date = recent1.created.slice(0, 10);
+
+                    var div = document.getElementById('posts');
 
 
+                    
+
+                    // TODO: set loop for each & display inline popup
+                    var recent1 = JSON.parse(JSON.stringify(result[0]));
+                    //console.log("recent1 from main: " + recent1.body);
+                    var recent1date = recent1.created.slice(0, 10);
+                    div.innerHTML += '<h1>' + recent1.title + "</h1><small>" + recent1date + "</small><p>" + recent1.body + "</p>";
+
+                   
+                    //document.getElementById("HivePost").innerHTML = marked(recent1.body);
+                    //console.log("TESTING RECENT POST: " + recent1.body);
+
+
+
+
+                    var recent2 = JSON.parse(JSON.stringify(result[1]));
+                    //console.log("recent 2")
+                    //console.log(recent2);
+                    var recent2date = recent2.created.slice(0, 10);
+                    div.innerHTML += '<h1>' + recent2.title + "</h1><small>" + recent2date + "</small><p>" + JSON.stringify(recent2.body) + "</p>";
+
+
+                    //document.getElementById("HivePost").innerHTML = marked(recent1.body);
+                    //console.log("TESTING RECENT POST: " + recent2.body);
+
+
+
+                    var recent3 = JSON.parse(JSON.stringify(result[2]));
+                    //console.log(recent3);
+                    var recent3date = recent3.created.slice(0, 10);
+                    div.innerHTML += '<h1>' + recent3.title + "</h1><small>" + recent3date + "</small><p>" + JSON.stringify(recent3.body) + "</p>";
+
+
+                    //document.getElementById("HivePost").innerHTML = marked(recent1.body);
+                    //console.log("TESTING RECENT POST: " + recent3.body);
+
+
+
+                    // view more on peakd
+                    div.innerHTML += "<br /><div>View More on <a href='http://peakd.com/@" + user + "/' target='_blank'>peakd.com/@" + user + "</a></div><hr />";
+                });
+            };
+        </script>
 
     </div>
 </div>
-
-
-
-
       <!-- close body content div-->
 </div>
 
@@ -120,7 +180,7 @@
    
   <span style="padding-left: 10px; float: left">
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-      <i class="material-icons" onclick="javascript:location.href='../'">home</i>
+      <i class="material-icons" onclick="javascript:location.href='../../../'">home</i>
     </button>
   
   </span>
